@@ -5,18 +5,13 @@ Window {
 	visible: true
 	id: mainWindow
 
-	property var cMainMenuComponent: Qt.createComponent("MainMenu.qml");
-	property var iMainMenuItem: undefined
-
 	Loader {
 		id: mainLoader
 	}
 
-	MouseArea {
-		anchors.fill: parent
-		onClicked: {
-			iMainMenuItem = iMainMenuItem ? iMainMenuItem : cMainMenuComponent.createObject(mainWindow);
-			mainLoader.data = [iMainMenuItem];
+	onVisibilityChanged: {
+		if(visibility) {
+			mainLoader.setSource("view/MainMenu.qml");
 		}
 	}
 }
