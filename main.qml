@@ -10,11 +10,6 @@ Window {
 	Loader {
 		anchors.fill: parent
 		id: mainLoader
-	}
-
-	onVisibilityChanged: {
-		if(visibility) {
-			mainLoader.setSource("view/MainMenu.qml");
-		}
+		source: "view/MainMenu.qml"
 	}
 }

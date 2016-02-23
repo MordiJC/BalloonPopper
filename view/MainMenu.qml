@@ -18,6 +18,7 @@ Item {
 				text: "Balloon"
 				rotation: -10
 				font.pointSize: 22
+				font.family: "Forte"
 			}
 
 			Text {
@@ -25,6 +26,7 @@ Item {
 				text: "Popper"
 				rotation: 10
 				font.pointSize: 22
+				font.family: "Forte"
 			}
 		}
 
@@ -48,6 +50,14 @@ Item {
 				font.pointSize: 14
 				font.family: 'Tahoma'
 				color: 'white'
+			}
+
+			MouseArea {
+				id: newGameMouseArea
+				anchors.fill: parrent
+				onClicked: {
+
+				}
 			}
 		}
 
