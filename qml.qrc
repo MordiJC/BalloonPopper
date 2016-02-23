@@ -4,5 +4,6 @@
         <file>view/MainMenu.qml</file>
         <file>ballons/Ballon.qml</file>
         <file>GameWorld.qml</file>
+        <file>view/Game.qml</file>
     </qresource>
 </RCC>

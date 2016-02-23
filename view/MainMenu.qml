@@ -56,6 +56,7 @@ Item {
 				id: newGameMouseArea
                 anchors.fill: parent
                 onClicked: mainWindow.loadPage("qrc:///GameWorld.qml", {})
+                //onClicked: mainWindow.loadPage("view/Game.qml")
 			}
 		}
 
