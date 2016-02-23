@@ -2,5 +2,6 @@
     <qresource prefix="/">
         <file>main.qml</file>
         <file>view/MainMenu.qml</file>
+        <file>view/Game.qml</file>
     </qresource>
 </RCC>
