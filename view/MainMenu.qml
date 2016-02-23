@@ -55,7 +55,7 @@ Item {
 			MouseArea {
 				id: newGameMouseArea
                 anchors.fill: parent
-                onClicked: mainWindow.loadPage("pathToPage")
+				onClicked: mainWindow.loadPage("view/Game.qml")
 			}
 		}
 
