@@ -5,7 +5,10 @@ Window {
 	visible: true
 	id: mainWindow
 
+	width: 300; height: 400
+
 	Loader {
+		anchors.fill: parent
 		id: mainLoader
 	}
 
