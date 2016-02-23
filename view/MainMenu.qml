@@ -54,10 +54,8 @@ Item {
 
 			MouseArea {
 				id: newGameMouseArea
-				anchors.fill: parrent
-				onClicked: {
-
-				}
+                anchors.fill: parent
+                onClicked: mainWindow.loadPage("pathToPage")
 			}
 		}
 

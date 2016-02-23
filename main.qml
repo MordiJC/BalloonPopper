@@ -5,6 +5,12 @@ Window {
 	visible: true
 	id: mainWindow
 
+    signal loadPage(string pagePath)
+    onLoadPage: {
+        console.log("setting page: ", pagePath)
+        mainLoader.setSource(pagePath, {})
+    }
+
 	width: 300; height: 400
 
 	Loader {
