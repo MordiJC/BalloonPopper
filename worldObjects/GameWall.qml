@@ -1,32 +1,35 @@
 import QtQuick 2.0
 import Box2D 2.0
 
-Item {
-    id: root
+Rectangle {
+    id: wall
+    objectName: "wall"
+    color: "red"
     width: 100
     height: 50
-    property color wallColor: "red"
-    property int wallRadius: 0
+    property string wallImageSource
     property bool wallImageSourceCenterIn: true
 
-    Rectangle {
-        id: wall
-        x: parent.x
-        y: parent.y
-        width: parent.width
-        height: parent.height
-        color: "black"
-        radius: parent.wallRadius
+    property World gameWorld: undefined
 
-        Body {
-            id: wallBody
-            target: wall
-            Box {
-                id: wallBox
-                width: wall.width
-                height: wall.height
-                onBeginContact: console.log("Wall", wallBox, "colides with: ", wallBox.collidesWith)
-            }
+    Image {
+        id: wallImage
+        anchors.centerIn: wallImageSourceCenterIn ? parent : 0
+        source: parent.parent.wallImageSource !== undefined ? wallImageSource : ""
+        anchors.fill: !wallImageSourceCenterIn ? parent : undefined
+        visible: wallImageSource != undefined ? true : false
+    }
+
+    Body {
+        id: wallBody
+        target: wall
+        world: gameWorld
+        Box {
+            id: wallBox
+            objectName: wall.objectName
+            width: wall.width
+            height: wall.height
+            onBeginContact: console.log(objectName, "colides with: ", other.objectName)
         }
     }
 }

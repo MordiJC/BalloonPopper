@@ -96,19 +96,20 @@ Item {
 	}
 
 	World {
-		id: gameWorld
+        id: gameWorld
+        gravity: Qt.point(0, 9.81)
 	}
 	Ballons.Ballon {
 		id: ballon
+        objectName: "ballon"
 		x: 100
 		y: 100
         gameWorld: gameWorld
 	}
     WorldObjects.GameWall {
         id: wallBottom
-        x: 0
-        y: 500
-        width: parent.width
-        wallColor: "black"
+        y: 300
+        x: 50
+        gameWorld: gameWorld
     }
 }
