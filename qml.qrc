@@ -7,5 +7,6 @@
         <file>view/Game.qml</file>
         <file>view/GameArea.qml</file>
         <file>worldObjects/GameWall.qml</file>
+        <file>view/StatusBar.qml</file>
     </qresource>
 </RCC>
