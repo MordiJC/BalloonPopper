@@ -3,7 +3,7 @@ import Box2D 2.0
 
 Rectangle {
     id: root
-    property World gameWorld
+    property World gameWorld: undefined
 
     function setXY(x,y) {
         root.x = x

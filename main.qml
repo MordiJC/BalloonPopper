@@ -11,7 +11,7 @@ Window {
         mainLoader.setSource(pagePath, args)
     }
 
-	width: 300; height: 400
+    width: 450; height: 800
 
 	Loader {
 		anchors.fill: parent

@@ -5,5 +5,6 @@
         <file>ballons/Ballon.qml</file>
         <file>GameWorld.qml</file>
         <file>view/Game.qml</file>
+        <file>worldObjects/GameWall.qml</file>
     </qresource>
 </RCC>
