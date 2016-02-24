@@ -6,5 +6,6 @@
         <file>GameWorld.qml</file>
         <file>view/Game.qml</file>
         <file>view/GameArea.qml</file>
+        <file>worldObjects/GameWall.qml</file>
     </qresource>
 </RCC>

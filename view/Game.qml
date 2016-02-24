@@ -4,6 +4,7 @@ import QtQuick.Layouts 1.1
 import Box2D 2.0
 
 import "../ballons" as Ballons
+import "../worldObjects" as WorldObjects
 
 /** Koncept
 
@@ -62,7 +63,7 @@ Item {
 			anchors.bottom: statusBar.top
 			color: 'purple'
 			clip: true
-		}
+        }
 
 		Row {
 			id: statusBar
@@ -101,23 +102,13 @@ Item {
 		id: ballon
 		x: 100
 		y: 100
-		gameWorld: gameWorld
+        gameWorld: gameWorld
 	}
-	Rectangle {
-		id: wall
-		x: 0
-		y: 300
-		color: "black"
-		width: parent.width
-		height: 50
-		Body {
-			id: wallBody
-			target: wall
-			Box {
-				id: wallBox
-				width: wall.width
-				height: wall.height
-			}
-		}
-	}
+    WorldObjects.GameWall {
+        id: wallBottom
+        x: 0
+        y: 500
+        width: parent.width
+        wallColor: "black"
+    }
 }
