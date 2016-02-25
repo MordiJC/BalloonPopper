@@ -16,7 +16,7 @@ Item {
 	signal setModel(var it);
 
 	onSetModel: {
-		if(it) {
+		if(it && it instanceof ListModel) {
 			statusBar.items.itemsModel.model = it;
 			statusBar.items.visible = true;
 		} else {
@@ -24,19 +24,47 @@ Item {
 		}
 	}
 
+	// Status bar item component
+	Component {
+		id: statusBarItem
+
+		QtObject {
+			id: internalData
+		}
+
+		Item {
+			id: statusBarItemRoot
+
+			anchors.fill: childrenRect
+
+			Image {
+				id: iconImage
+				source: icon
+			}
+
+			Text {
+				id: nameText
+				text: name
+				font.pointSize: 14
+			}
+
+			Text {
+				id: valueText
+				text: value
+				font.pointSize: 14
+			}
+
+		}
+	}
+
+	// Status bar layout
 	Flow {
 		id: items
 		anchors.fill: parent
 		visible: false
 		Repeater {
 			id: itemsModel
-			anchors.fill: parent
-
-			Item {
-				anchors.fill: childrenRect
-				width: childrenRect.width
-				height: childrenRect.height
-			}
+			delegate: statusBarItem
 		}
 	}
 }
