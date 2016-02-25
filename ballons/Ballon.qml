@@ -47,9 +47,10 @@ Rectangle {
 //			root.destroy()
 //		}
 		onPressed: {
-//			mouse.accepted = false;
+			console.log("pressed")
 			pressedBody = rootBody;
 		}
+
 	}
 }
 

@@ -110,8 +110,25 @@ Item {
 	}
 	WorldObjects.GameWall {
 		id: wallBottom
-		y: 300
-		x: 70
+		y: parent.height - height
+		x: 0
+		width: parent.width
+		gameWorld: gameWorld
+	}
+	WorldObjects.GameWall {
+		id: wallLeft
+		y: 0
+		x: -width
+		width: parent.width/2
+		height: parent.height * 2
+		gameWorld: gameWorld
+	}
+	WorldObjects.GameWall {
+		id: wallRight
+		y: 0
+		x: parent.width
+		width: parent.width/2
+		height: parent.height * 2
 		gameWorld: gameWorld
 	}
 
@@ -126,13 +143,16 @@ Item {
 		anchors.fill: parent
 //		enabled: false
 		preventStealing: false
+		//hoverEnabled: true
+		propagateComposedEvents: true
 		onPressed: {
 			if (pressedBody != null) {
 				mouseJoint.maxForce = pressedBody.getMass() * 500
 				mouseJoint.target = Qt.point(mouseX, mouseY)
 				mouseJoint.bodyB = pressedBody;
+			} else {
+				mouse.accepted = false
 			}
-			mouse.accepted = false
 		}
 		onPositionChanged: {
 			console.log("positonChanged to: ", x, y)
