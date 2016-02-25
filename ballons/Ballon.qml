@@ -7,6 +7,8 @@ Rectangle {
 	property bool draggable: true
 	property World gameWorld: undefined
 
+	property int points: 10
+
 	signal clicked
 
     function setXY(x,y) {
@@ -29,8 +31,6 @@ Rectangle {
 		Circle {
             id: box
 			objectName: root.objectName
-			//width: root.width
-			//height: root.height
 			radius: 25
 			density: -100
 			restitution: 0.1
@@ -50,14 +50,24 @@ Rectangle {
 		dampingRatio: 0.8
 		maxForce: 100
 	}
+	PropertyAnimation {
+		id: animDestroy
+		target: root
+		property: "scale"
+		from: 1
+		to: 1.2
+		duration: 150
+		easing.type: Easing.InBounce
+		onStopped: root.destroy()
+	}
+
 	MouseArea {
 		anchors.fill: parent
 		propagateComposedEvents: true
 		onClicked: {
 			console.log("Clicked objectName: ", root.objectName)
 			root.clicked()
-			root.destroy()
-			game.points+=10
+			animDestroy.start()
 		}
 		onPressed: {
 			if (draggable) {
