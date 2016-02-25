@@ -14,25 +14,27 @@ Rectangle {
         root.y = y
     }
 
-    width: 100
-    height: 50
-    color: "black"
+	width: 50
+	height: 60
+	color: "red"
+	opacity: 0.7
+	radius: 25
 	antialiasing: true
 
     Body {
         id: rootBody
         world: gameWorld
         target: root
-        bodyType: Body.Dynamic
-
-        Box {
+		bodyType: Body.Dynamic
+		Circle {
             id: box
 			objectName: root.objectName
-            width: root.width
-            height: root.height
-            density: 0.5
-            restitution: 0.5
-            friction: 0.5
+			//width: root.width
+			//height: root.height
+			radius: 25
+			density: -100
+			restitution: 0.1
+			friction: 0.1
 			onBeginContact: console.log("Ballon contact with: ", other.objectName)
         }
     }
@@ -54,17 +56,19 @@ Rectangle {
 		onClicked: {
 			console.log("Clicked objectName: ", root.objectName)
 			root.clicked()
+			root.destroy()
+			game.points+=10
 		}
 		onPressed: {
 			if (draggable) {
-				mouseDragJoint.maxForce = rootBody.getMass() * 500
+				mouseDragJoint.maxForce = rootBody.getMass() * 15
 				mouseDragJoint.target = Qt.point(mapToItem(null, mouseX, mouseY).x, mapToItem(null, mouseX, mouseY).y)
 				mouseDragJoint.bodyB = rootBody;
 			}
 		}
 		onPositionChanged: {
 			if (draggable) {
-				mouseDragJoint.maxForce = rootBody.getMass() * 500
+				mouseDragJoint.maxForce = rootBody.getMass() * 15
 				mouseDragJoint.target = Qt.point(mapToItem(null, mouseX, mouseY).x, mapToItem(null, mouseX, mouseY).y)
 				mouseDragJoint.bodyB = rootBody
 			}

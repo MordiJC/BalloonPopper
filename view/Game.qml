@@ -58,12 +58,13 @@ Item {
 	ColumnLayout {
 		anchors.fill: parent
 
-		Rectangle {
+		Image {
 			anchors.top: parent.top
 			anchors.left: parent.left
 			anchors.right: parent.right
 			anchors.bottom: statusBar.top
-			color: 'grey'
+			//color: 'grey'
+			source: "http://lh6.ggpht.com/ZCOlB4IXq3Ocx8IhUrAtBUxhq26flOKbMsy8KU9mjPPh-Mf7s1yEIjTJ3DQioqOnbrU=h900"
 			clip: true
 		}
 
@@ -99,18 +100,24 @@ Item {
 
 	World {
 		id: gameWorld
-		gravity: Qt.point(0, 9.81)
+		gravity: Qt.point(0, -6.81)
 	}
 	Ballons.Ballon {
 		id: ballon
 		objectName: "ballon"
-		x: 100
-		y: 100
 		gameWorld: gameWorld
+		Component.onCompleted: setXY(100, 600)
 	}
 	WorldObjects.GameWall {
 		id: wallBottom
-		y: parent.height - height
+		y: parent.height
+		x: 0
+		width: parent.width
+		gameWorld: gameWorld
+	}
+	WorldObjects.GameWall {
+		id: wallUp
+		y: -height
 		x: 0
 		width: parent.width
 		gameWorld: gameWorld
