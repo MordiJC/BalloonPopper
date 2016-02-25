@@ -3,7 +3,8 @@ import Box2D 2.0
 
 Rectangle {
     id: root
-    property World gameWorld: undefined
+	objectName: "ballon"
+	property World gameWorld: undefined
 
     function setXY(x,y) {
         root.x = x
@@ -23,20 +24,32 @@ Rectangle {
 
         Box {
             id: box
-            objectName: root.objectName
+			objectName: root.objectName
             width: root.width
             height: root.height
             density: 0.5
             restitution: 0.5
             friction: 0.5
-            onBeginContact: {
-                if (other.objectName === "wall") {
-                   root.destroy()
-                } else {
-                    console.log("Ballon contact with: ", other.objectName)
-                }
-            }
+			onBeginContact: {
+//				if (other.objectName === "wall") {
+//				   root.destroy()
+//				} else {
+//					console.log("Ballon contact with: ", other.objectName)
+//				}
+			}
         }
     }
+	MouseArea {
+		anchors.fill: parent
+		propagateComposedEvents: true
+//		onClicked: {
+//			console.log("Clicked objectName: ", parent.objectName)
+//			root.destroy()
+//		}
+		onPressed: {
+//			mouse.accepted = false;
+			pressedBody = rootBody;
+		}
+	}
 }
 
