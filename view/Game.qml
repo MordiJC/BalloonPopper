@@ -51,7 +51,7 @@ Item {
 	id: game
 	anchors.fill: parent
 
-	property int points: 0
+	property int points: 30
 
 	property Body pressedBody: null
 
@@ -81,12 +81,16 @@ Item {
 
 			GameStatusBar {
 				model: ListModel {
-					ListElement {
-						icon: "http://icons.iconarchive.com/icons/custom-icon-design/pretty-office-11/256/coin-us-dollar-icon.png"
-						name: "Points: "
-						value: 0
-					}
+					id: modello
+//					ListElement {
+//						icon: "http://icons.iconarchive.com/icons/custom-icon-design/pretty-office-11/256/coin-us-dollar-icon.png"
+//						name: "Points: "
+//						value: 0
+//					}
 				}
+				Component.onCompleted: modello.append({icon: "http://icons.iconarchive.com/icons/custom-icon-design/pretty-office-11/256/coin-us-dollar-icon.png",
+														  name: "Points: ",
+														  value: points});
 			}
 
 			/*Column {

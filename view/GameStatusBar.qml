@@ -2,7 +2,8 @@ import QtQuick 2.0
 
 Item {
 	id: statusBar
-	anchors.fill: parent
+	width: 300
+	height: 50
 
 	property alias model: itemsModel.model
 
@@ -14,7 +15,7 @@ Item {
 //	}
 	// działa tak samo a mniej o 5 lini kodu
 	// jesli sie cos da w skroconym ifie zrobic to trzeba zrobic :)
-	onModelChanged: typeof(model) !== "undefined" ? statusBar.items.visible = true : statusBar.items.visible = false
+	//onModelChanged: typeof(model) !== "undefined" ? statusBar.items.visible = true : statusBar.items.visible = false
 
 	// Status bar item component
 	Component {
@@ -52,7 +53,7 @@ Item {
 	Flow {
 		id: layoutContainer
 		anchors.fill: parent
-		visible: false
+		visible: true
 		Repeater {
 			id: itemsModel
 			delegate: statusBarItem
