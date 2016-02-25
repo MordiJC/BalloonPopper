@@ -5,6 +5,7 @@ import Box2D 2.0
 
 import "../ballons" as Ballons
 import "../worldObjects" as WorldObjects
+import "../view/GameStatusBar.qml"
 
 /** Koncept
 
@@ -79,7 +80,17 @@ Item {
 
 			height: childrenRect.height
 
-			Column {
+			GameStatusBar {
+				model: ListModel {
+					ListElement {
+						icon: "http://www.veryicon.com/icon/ico/System/Sleek%20XP%20Basic/Coin.ico"
+						name: "Points: "
+						value: game.points
+					}
+				}
+			}
+
+			/*Column {
 				id: pointsContainer
 				Row {
 					Text {
@@ -94,7 +105,7 @@ Item {
 						font.pointSize: 14
 					}
 				}
-			}
+			}*/
 		}
 	}
 

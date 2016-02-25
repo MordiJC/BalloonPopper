@@ -43,6 +43,8 @@ Item {
 			Image {
 				id: iconImage
 				source: icon
+				height: 32
+				width: 32
 			}
 
 			Text {
