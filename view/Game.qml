@@ -3,8 +3,10 @@ import QtQuick.Layouts 1.1
 
 import Box2D 2.0
 
-import "../ballons" as Ballons
+import "../balloons" as Balloons
 import "../worldObjects" as WorldObjects
+
+import "../scripts/utility.js"
 
 Item {
 	id: game
@@ -15,14 +17,16 @@ Item {
 
 	property Body pressedBody: null
 
+	property int spawnTimeRange: [100, 800]
+
 	Component.onCompleted: {}
 
 	Timer {
-		id: timerBallonSpawner
+		id: timerBalloonspawner
 		running: false
-		interval: 300
+		interval: getRandomInt(spawnTimeRange[0], spawnTimeRange[1]);
 		onTriggered: {
-
+			interval: getRandomInt(spawnTimeRange[0], spawnTimeRange[1]);
 		}
 	}
 
@@ -65,9 +69,9 @@ Item {
 		id: gameWorld
 		gravity: Qt.point(0, -6.81)
 	}
-	Ballons.Ballon {
-		id: ballon
-		objectName: "ballon"
+	Balloons.Balloon {
+		id: balloon
+		objectName: "balloon"
 		gameWorld: gameWorld
 		points: 50
 		Component.onCompleted: setXY(100, 600)

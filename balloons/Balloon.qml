@@ -3,7 +3,7 @@ import Box2D 2.0
 
 Rectangle {
     id: root
-	objectName: "ballon"
+	objectName: "balloon"
 	property bool draggable: true
 	property World gameWorld: undefined
 
@@ -35,7 +35,7 @@ Rectangle {
 			density: -100
 			restitution: 0.1
 			friction: 0.1
-			onBeginContact: console.log("Ballon contact with: ", other.objectName)
+			onBeginContact: console.log("Balloon contact with: ", other.objectName)
         }
     }
 	Body {
