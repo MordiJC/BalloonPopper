@@ -6,7 +6,7 @@ import Box2D 2.0
 import "../balloons" as Balloons
 import "../worldObjects" as WorldObjects
 
-import "../scripts/utility.js"
+import "../scripts/utility.js" as Utility
 
 Item {
 	id: game
@@ -17,21 +17,24 @@ Item {
 
 	property Body pressedBody: null
 
-	property int spawnTimeRange: [100, 800]
+	property var spawnTimeRange: [100, 800]
 
 	Component.onCompleted: {}
 
 	Timer {
 		id: timerBalloonspawner
 		running: false
-		interval: getRandomInt(spawnTimeRange[0], spawnTimeRange[1]);
+		interval: Utility.getRandomInt(spawnTimeRange[0], spawnTimeRange[1]);
 		onTriggered: {
-			interval: getRandomInt(spawnTimeRange[0], spawnTimeRange[1]);
+			interval: Utility.getRandomInt(spawnTimeRange[0], spawnTimeRange[1]);
+			// Dodać balona
 		}
 	}
 
 	ColumnLayout {
 		anchors.fill: parent
+
+		// TODO: Dodać GameArea
 
 		Image {
 			anchors.top: parent.top
@@ -42,6 +45,8 @@ Item {
 			source: "http://lh6.ggpht.com/ZCOlB4IXq3Ocx8IhUrAtBUxhq26flOKbMsy8KU9mjPPh-Mf7s1yEIjTJ3DQioqOnbrU=h900"
 			clip: true
 		}
+
+
 
 		Row {
 			id: statusBar
@@ -54,21 +59,21 @@ Item {
 
 			height: childrenRect.height
 
-			GameStatusBar {
-				model: ListModel {
-					id: modello
+			Item {
+				width: childrenRect.width
+				height: childrenRect.height
+				GameStatusBar {
+					model: ListModel {
+						id: modello
+					}
+					Component.onCompleted: modello.append({icon: "http://icons.iconarchive.com/icons/custom-icon-design/pretty-office-11/256/coin-us-dollar-icon.png",
+															  name: "Points: ",
+															  value: points});
 				}
-				Component.onCompleted: modello.append({icon: "http://icons.iconarchive.com/icons/custom-icon-design/pretty-office-11/256/coin-us-dollar-icon.png",
-														  name: "Points: ",
-														  value: points});
 			}
 		}
 	}
 
-	World {
-		id: gameWorld
-		gravity: Qt.point(0, -6.81)
-	}
 	Balloons.Balloon {
 		id: balloon
 		objectName: "balloon"
