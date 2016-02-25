@@ -11,6 +11,7 @@ Item {
 	anchors.fill: parent
 
 	property int points: 30
+	onPointsChanged: console.log("points: ", points)
 
 	property Body pressedBody: null
 
@@ -57,6 +58,7 @@ Item {
 		id: ballon
 		objectName: "ballon"
 		gameWorld: gameWorld
+		points: 50
 		Component.onCompleted: setXY(100, 600)
 	}
 	WorldObjects.GameWall {
