@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/">
+        <file>view/Game.qml</file>
+        <file>view/GameArea.qml</file>
+        <file>view/MainMenu.qml</file>
+        <file>view/StatusBar.qml</file>
+    </qresource>
+</RCC>
