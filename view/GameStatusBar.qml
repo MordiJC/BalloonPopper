@@ -14,7 +14,7 @@ Item {
 //	}
 	// działa tak samo a mniej o 5 lini kodu
 	// jesli sie cos da w skroconym ifie zrobic to trzeba zrobic :)
-	onModelChanged: model ? statusBar.items.visible = true : statusBar.items.visible = false
+	onModelChanged: typeof(model) !== "undefined" ? statusBar.items.visible = true : statusBar.items.visible = false
 
 	// Status bar item component
 	Component {
@@ -23,7 +23,8 @@ Item {
 		Item {
 			id: statusBarItemRoot
 
-			anchors.fill: childrenRect
+			width: childrenRect.width
+			height: childrenRect.height
 
 			Image {
 				id: iconImage
@@ -55,6 +56,7 @@ Item {
 		Repeater {
 			id: itemsModel
 			delegate: statusBarItem
+			model: undefined
 		}
 	}
 }

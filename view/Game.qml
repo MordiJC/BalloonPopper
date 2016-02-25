@@ -82,9 +82,9 @@ Item {
 			GameStatusBar {
 				model: ListModel {
 					ListElement {
-						icon: "http://www.veryicon.com/icon/ico/System/Sleek%20XP%20Basic/Coin.ico"
+						icon: "http://icons.iconarchive.com/icons/custom-icon-design/pretty-office-11/256/coin-us-dollar-icon.png"
 						name: "Points: "
-						value: game.points
+						value: 0
 					}
 				}
 			}
