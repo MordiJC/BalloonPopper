@@ -1,4 +1,4 @@
-import QtQuick 2.0
+import QtQuick 2.5
 import QtQuick.Layouts 1.1
 
 import Box2D 2.0
@@ -53,6 +53,8 @@ Item {
 
 	property int points: 0
 
+	property Body pressedBody: null
+
 	ColumnLayout {
 		anchors.fill: parent
 
@@ -61,9 +63,9 @@ Item {
 			anchors.left: parent.left
 			anchors.right: parent.right
 			anchors.bottom: statusBar.top
-			color: 'purple'
+			color: 'grey'
 			clip: true
-        }
+		}
 
 		Row {
 			id: statusBar
@@ -96,20 +98,37 @@ Item {
 	}
 
 	World {
-        id: gameWorld
-        gravity: Qt.point(0, 9.81)
+		id: gameWorld
+		gravity: Qt.point(0, 9.81)
 	}
 	Ballons.Ballon {
 		id: ballon
-        objectName: "ballon"
+		objectName: "ballon"
 		x: 100
 		y: 100
-        gameWorld: gameWorld
+		gameWorld: gameWorld
 	}
-    WorldObjects.GameWall {
-        id: wallBottom
-        y: 300
-        x: 50
-        gameWorld: gameWorld
-    }
+	WorldObjects.GameWall {
+		id: wallBottom
+		y: parent.height - height
+		x: 0
+		width: parent.width
+		gameWorld: gameWorld
+	}
+	WorldObjects.GameWall {
+		id: wallLeft
+		y: 0
+		x: -width
+		width: parent.width/2
+		height: parent.height * 2
+		gameWorld: gameWorld
+	}
+	WorldObjects.GameWall {
+		id: wallRight
+		y: 0
+		x: parent.width
+		width: parent.width/2
+		height: parent.height * 2
+		gameWorld: gameWorld
+	}
 }
