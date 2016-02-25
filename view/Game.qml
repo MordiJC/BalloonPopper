@@ -5,7 +5,6 @@ import Box2D 2.0
 
 import "../ballons" as Ballons
 import "../worldObjects" as WorldObjects
-import "../view/GameStatusBar.qml"
 
 /** Koncept
 

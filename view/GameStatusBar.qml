@@ -4,7 +4,7 @@ Item {
 	id: statusBar
 	anchors.fill: parent
 
-	property alias model: items.itemsModel.model
+	property alias model: itemsModel.model
 
 //	onModelChanged: {
 //		if(model)
@@ -16,24 +16,9 @@ Item {
 	// jesli sie cos da w skroconym ifie zrobic to trzeba zrobic :)
 	onModelChanged: model ? statusBar.items.visible = true : statusBar.items.visible = false
 
-	signal setModel(var it);
-
-	onSetModel: {
-		if(it && it instanceof ListModel) {
-			statusBar.items.itemsModel.model = it;
-			statusBar.items.visible = true;
-		} else {
-			statusBar.items.visible = false;
-		}
-	}
-
 	// Status bar item component
 	Component {
 		id: statusBarItem
-
-		QtObject {
-			id: internalData
-		}
 
 		Item {
 			id: statusBarItemRoot
@@ -64,7 +49,7 @@ Item {
 
 	// Status bar layout
 	Flow {
-		id: items
+		id: layoutContainer
 		anchors.fill: parent
 		visible: false
 		Repeater {
