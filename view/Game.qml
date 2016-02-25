@@ -15,6 +15,17 @@ Item {
 
 	property Body pressedBody: null
 
+	Component.onCompleted: {}
+
+	Timer {
+		id: timerBallonSpawner
+		running: false
+		interval: 300
+		onTriggered: {
+
+		}
+	}
+
 	ColumnLayout {
 		anchors.fill: parent
 
