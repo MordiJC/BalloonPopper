@@ -29,7 +29,7 @@ Rectangle {
             objectName: wall.objectName
             width: wall.width
             height: wall.height
-            onBeginContact: console.log(objectName, "colides with: ", other.objectName)
+			//onBeginContact: console.log(objectName, "colides with: ", other.objectName)
         }
     }
 }

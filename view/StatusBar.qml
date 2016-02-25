@@ -6,12 +6,15 @@ Item {
 
 	property alias model: items.itemsModel.model
 
-	onModelChanged: {
-		if(model)
-			statusBar.items.visible = true;
-		else
-			statusBar.items.visible = false;
-	}
+//	onModelChanged: {
+//		if(model)
+//			statusBar.items.visible = true;
+//		else
+//			statusBar.items.visible = false;
+//	}
+	// działa tak samo a mniej o 5 lini kodu
+	// jesli sie cos da w skroconym ifie zrobic to trzeba zrobic :)
+	onModelChanged: model ? statusBar.items.visible = true : statusBar.items.visible = false
 
 	signal setModel(var it);
 

@@ -131,42 +131,4 @@ Item {
 		height: parent.height * 2
 		gameWorld: gameWorld
 	}
-
-	MouseJoint {
-		id: mouseJoint
-		bodyA: anchor
-		dampingRatio: 0.8
-		maxForce: 100
-	}
-
-	MouseArea {
-		anchors.fill: parent
-//		enabled: false
-		preventStealing: false
-		//hoverEnabled: true
-		propagateComposedEvents: true
-		onPressed: {
-			if (pressedBody != null) {
-				mouseJoint.maxForce = pressedBody.getMass() * 500
-				mouseJoint.target = Qt.point(mouseX, mouseY)
-				mouseJoint.bodyB = pressedBody;
-			} else {
-				mouse.accepted = false
-			}
-		}
-		onPositionChanged: {
-			console.log("positonChanged to: ", x, y)
-			mouseJoint.maxForce = pressedBody.getMass() * 500
-			mouseJoint.target = Qt.point(mouseX, mouseY);
-			mouseJoint.bodyB = pressedBody;
-		}
-		onReleased: {
-			mouseJoint.bodyB = null;
-			pressedBody = null;
-		}
-	}
-	Body {
-		id: anchor
-		world: gameWorld
-	}
 }
