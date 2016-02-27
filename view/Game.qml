@@ -34,17 +34,31 @@ Item {
 	ColumnLayout {
 		anchors.fill: parent
 
-		// TODO: Dodać GameArea
+		// TODO: Dodać GameArea [X]
 
-		Image {
+		GameArea {
 			anchors.top: parent.top
 			anchors.left: parent.left
 			anchors.right: parent.right
 			anchors.bottom: statusBar.top
-			//color: 'grey'
-			source: "http://lh6.ggpht.com/ZCOlB4IXq3Ocx8IhUrAtBUxhq26flOKbMsy8KU9mjPPh-Mf7s1yEIjTJ3DQioqOnbrU=h900"
 			clip: true
+			bgtype: "image"
+			bgvalue: "http://lh6.ggpht.com/ZCOlB4IXq3Ocx8IhUrAtBUxhq26flOKbMsy8KU9mjPPh-Mf7s1yEIjTJ3DQioqOnbrU=h900"
+			scene: Item {
+				id: gameContent
+				// Umieścić tutaj box z grą
+			}
 		}
+
+//		Image {
+//			anchors.top: parent.top
+//			anchors.left: parent.left
+//			anchors.right: parent.right
+//			anchors.bottom: statusBar.top
+//			//color: 'grey'
+//			source: "http://lh6.ggpht.com/ZCOlB4IXq3Ocx8IhUrAtBUxhq26flOKbMsy8KU9mjPPh-Mf7s1yEIjTJ3DQioqOnbrU=h900"
+//			clip: true
+//		}
 
 
 
@@ -63,6 +77,7 @@ Item {
 				width: childrenRect.width
 				height: childrenRect.height
 				GameStatusBar {
+
 					model: ListModel {
 						id: modello
 					}
@@ -73,6 +88,11 @@ Item {
 			}
 		}
 	}
+	World {
+		id: gameWorld
+		gravity: Qt.point(0, -4.5)
+	}
+
 
 	Balloons.Balloon {
 		id: balloon

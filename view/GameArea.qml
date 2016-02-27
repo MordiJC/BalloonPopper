@@ -4,24 +4,31 @@ Item {
 	id: gameArea
 	anchors.fill: parent
 
+	property alias bgtype: background.state
+	property string bgvalue: "white"
+	property var scene: undefined
+
+	onSceneChanged: {
+		sceneItem.children[0] = scene;
+	}
+
 	Item {
 		id: background
 		anchors.fill: parent
 		z: -1
 		state: "none"
-		property alias source: imageBackground.source
 
 		Rectangle {
 			id: colorBackground
 			anchors.fill: parent
-			color: "white"
+			color: bgvalue
 			visible: false
 		}
 
 		Image {
 			id: imageBackground
 			anchors.fill: parent
-			source: ""
+			source: bgvalue
 			visible: false
 		}
 
@@ -63,7 +70,7 @@ Item {
 	} // End of Item:background
 
 	Item {
-		id: scene
+		id: sceneItem
 		anchors.fill: parent
 	}
 }
