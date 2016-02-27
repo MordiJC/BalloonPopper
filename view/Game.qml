@@ -19,7 +19,11 @@ Item {
 
 	property var spawnTimeRange: [100, 800]
 
-	Component.onCompleted: {}
+	Component.onCompleted: {
+		console.log("Window: " + game.width + " : " + game.height);
+		console.log("GameArea: " + gameArea.width + " : " + gameArea.height);
+		console.log("StatusBar: " + statusBar.width + " : " + statusBar.height);
+	}
 
 	Timer {
 		id: timerBalloonspawner
@@ -37,6 +41,7 @@ Item {
 		// TODO: Dodać GameArea [X]
 
 		GameArea {
+			id: gameArea
 			anchors.top: parent.top
 			anchors.left: parent.left
 			anchors.right: parent.right

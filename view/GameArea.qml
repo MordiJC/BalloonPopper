@@ -2,10 +2,20 @@ import QtQuick 2.0
 
 Item {
 	id: gameArea
-	anchors.fill: parent
+	// Anchory ustawiamy przy tworzeniu obiektu na zewnątrz
+	// anchors.fill: parent
 
+	// Typ tła
 	property alias bgtype: background.state
+
+	/* Wartosć podawana do wybranego obiektu tła:
+	 * "color": ("white", "#3E3", itp.)
+	 * "image": (url do obrazka)
+	 * "none": Nie ma znaczenia, tło nie będzie wyświetlone.
+	 */
 	property string bgvalue: "white"
+
+	// Zmienna przechowujaca referencję do obiekty zawierającego scenę gry.
 	property var scene: undefined
 
 	onSceneChanged: {
