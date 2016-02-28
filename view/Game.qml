@@ -8,6 +8,10 @@ import "../worldObjects" as WorldObjects
 
 import "../scripts/utility.js" as Utility
 
+/**
+ * Game.qml - Plik z głównymi danymi gry.
+ */
+
 Item {
 	id: game
 	anchors.fill: parent
@@ -19,11 +23,7 @@ Item {
 
 	property var spawnTimeRange: [100, 800]
 
-	Component.onCompleted: {
-		console.log("Window: " + game.width + " : " + game.height);
-		console.log("GameArea: " + gameArea.width + " : " + gameArea.height);
-		console.log("StatusBar: " + statusBar.width + " : " + statusBar.height);
-	}
+	Component.onCompleted: {}
 
 	Timer {
 		id: timerBalloonspawner
@@ -46,7 +46,6 @@ Item {
 			anchors.left: parent.left
 			anchors.right: parent.right
 			anchors.bottom: statusBar.top
-			clip: true
 			bgtype: "image"
 			bgvalue: "http://lh6.ggpht.com/ZCOlB4IXq3Ocx8IhUrAtBUxhq26flOKbMsy8KU9mjPPh-Mf7s1yEIjTJ3DQioqOnbrU=h900"
 			scene: Item {
@@ -93,6 +92,7 @@ Item {
 			}
 		}
 	}
+
 	World {
 		id: gameWorld
 		gravity: Qt.point(0, -4.5)

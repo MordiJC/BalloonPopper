@@ -1,16 +1,19 @@
 import QtQuick 2.0
 import QtQuick.Layouts 1.1
 
-Item {
-	// Component
-	id: menuRoot
+/**
+ * MainMenu.qml - Plik zawierający główne menu gry.
+ */
 
+Item {
+	id: menuRoot
 	anchors.fill: parent
 
 	Column {
 		anchors.centerIn: parent
 		spacing: 25
 
+		// Tekst na górze menu
 		Row {
 			spacing: 10
 			Text {
@@ -28,8 +31,9 @@ Item {
 				font.pointSize: 22
 				font.family: "Forte"
 			}
-		}
+		} // Row
 
+		// Przycisk "New Game"
 		Rectangle {
 			id: newGameButton
 			anchors.horizontalCenter: parent.horizontalCenter
@@ -55,11 +59,11 @@ Item {
 			MouseArea {
 				id: newGameMouseArea
                 anchors.fill: parent
-                //onClicked: mainWindow.loadPage("qrc:///GameWorld.qml", {})
                 onClicked: mainWindow.loadPage("view/Game.qml", {})
 			}
-		}
+		} // Rectangle: newGameButton
 
+		// Przycisk "High Scores"
 		Rectangle {
 			id: highScoresButton
 			anchors.horizontalCenter: parent.horizontalCenter
@@ -80,7 +84,6 @@ Item {
 				font.family: 'Tahoma'
 				color: 'white'
 			}
-		}
-	}
-
-}
+		} // Rectangle: highScoresButton
+	} // Column
+} // Item: menuRoot

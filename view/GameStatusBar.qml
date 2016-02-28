@@ -1,5 +1,10 @@
 import QtQuick 2.0
 
+/**
+ * GameStatusBar.qml - Plik ten zawiera obiekt z status barem gry.
+ * W tym kontenerze można osadzać Informacje w formacie {icon, name, value}.
+ */
+
 Item {
 	id: statusBar
 	anchors.left: parent.left
@@ -10,7 +15,7 @@ Item {
 
 	// Status bar item component
 	Component {
-		id: statusBarItem
+		id: statusBarComponent
 
 		Item {
 			id: statusBarItemRoot
@@ -39,8 +44,8 @@ Item {
 					font.pointSize: 14
 				}
 			}
-		}
-	}
+		} // Item: statusBarItemRoot
+	} // Component: statusBarComponent
 
 	// Status bar layout
 	Flow {
@@ -49,8 +54,8 @@ Item {
 		visible: true
 		Repeater {
 			id: itemsModel
-			delegate: statusBarItem
+			delegate: statusBarComponent
 			model: undefined
 		}
-	}
-}
+	} // Flow: layoutContainer
+} // Item: statusBar
