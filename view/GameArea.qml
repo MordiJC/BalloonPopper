@@ -17,23 +17,17 @@ Item {
 	 */
 	property string bgvalue: "white"
 
-	// Zmienna przechowujaca referencję do obiekty zawierającego scenę gry.
-	property var scene: undefined
+	// Alias na źródło Loadera sceny gry.
+	property alias scene: sceneLoader.source
+
+	// Alias na źródło Loadera ui gry.
+	property alias ui: uiLoader.source
 
 	/**
 	 * Ustawiamy `clip` na `true`, ponieważ nie chcemy,
 	 * aby obiekty podrzędne wychodziły poza obszar rysowania.
 	 */
 	clip: true
-
-	/**
-	 * Jeżeli wartość zmiennej `scene` ulegnie zmianie, to przypisujemy
-	 * ją jako pierwsze dziecko objektu `sceneItem`. W ten sposób mamy
-	 * tylko jeden obiekt główny, będący objektem obszaru rysowania gry.
-	 */
-	onSceneChanged: {
-		sceneItem.children[0] = scene;
-	}
 
 	/**
 	 * Kontener z tłem obszaru gry. Aktualnie może przyjmować 3 stany:
@@ -115,8 +109,14 @@ Item {
 	 * Kontener przeznaczony na obszar rysowania gry. Jego zawartość
 	 * ustawiamy poprzez podanie jej do zmiennej `scene`.
 	 */
-	Item {
-		id: sceneItem
+	Loader {
+		id: sceneLoader
 		anchors.fill: parent
+	}
+
+	Loader {
+		id: uiLoader
+		anchors.fill: parent
+		z: 2
 	}
 } // Item: gameArea

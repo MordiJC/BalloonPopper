@@ -1,6 +1,12 @@
 import QtQuick 2.0
-import "ballons" as Ballons
 import Box2D 2.0
+
+import "balloons" as Balloons
+
+/**
+ * GameWorld.qml - Plik zawiera "Świat Gry", który zawiera
+ * wszystkie elementy rozgrywki.
+ */
 
 Item {
     id: rootGameWorld
@@ -8,10 +14,11 @@ Item {
 
     World {
         id: gameWorld
-
+		gravity: Qt.point(0, 1)
     }
-    Ballons.Ballon {
-        id: ballon
+
+	Balloons.Balloon {
+		id: balloon
         x: 100
         y: 100
         gameWorld: gameWorld

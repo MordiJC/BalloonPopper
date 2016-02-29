@@ -26,3 +26,13 @@
 *.exe
 *.out
 *.app
+
+# QtCreator
+*.autosave
+
+# Binary Files
+*.dat
+*.bin
+*.rar
+*.zip
+*.raw

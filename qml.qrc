@@ -1,8 +1,6 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
-        <file>GameWorld.qml</file>
-        <file>worldObjects/GameWall.qml</file>
         <file>balloons/Balloon.qml</file>
     </qresource>
 </RCC>
