@@ -28,34 +28,19 @@ Item {
 
 	ColumnLayout {
 		anchors.fill: parent
-
-		Row {
+		Item {
 			id: statusBar
-			anchors {
-				top: parent.top
-				left: parent.left
-				right: parent.right
-				topMargin: 3
-				bottomMargin: 3
-				leftMargin: 3
-				rightMargin: 10
-			}
-			spacing: 20
-			Item {
-				width: childrenRect.width
-				height: childrenRect.height
-				GameStatusBar {
-
-					model: ListModel {
-						id: modello
-					}
-					Component.onCompleted: modello.append({icon: "http://icons.iconarchive.com/icons/custom-icon-design/pretty-office-11/256/coin-us-dollar-icon.png",
-															  name: "Points: ",
-															  value: points});
+			width: parent.width
+			height: parent.height/30
+			GameStatusBar {
+				model: ListModel {
+					id: modello
 				}
+				Component.onCompleted: modello.append({icon: "http://icons.iconarchive.com/icons/custom-icon-design/pretty-office-11/256/coin-us-dollar-icon.png",
+														  name: "Points: ",
+														  value: points});
 			}
 		}
-
 		GameArea {
 			id: gameArea
 			anchors {
@@ -95,8 +80,9 @@ Item {
 	}
 	WorldObjects.GameWall {
 		id: wallUp
-		y: -height
+		y: -height + statusBar.height
 		x: 0
+		color: "transparent"
 		width: parent.width
 		gameWorld: gameWorld
 	}
