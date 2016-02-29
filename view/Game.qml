@@ -11,7 +11,6 @@ import "../scripts/utility.js" as Utility
 /**
  * Game.qml - Plik z głównymi danymi gry.
  */
-
 Item {
 	id: game
 	anchors.fill: parent

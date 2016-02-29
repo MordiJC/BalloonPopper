@@ -8,8 +8,7 @@ PhysicsItem {
 	width: 50
 	height: 60
 	property bool draggable: true
-	property var gameWorld: undefined
-	physicsWorld: gameWorld
+	property alias gameWorld: balloonRoot.physicsWorld
 
 	property int points: 10
 
