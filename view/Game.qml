@@ -4,7 +4,7 @@ import QtQuick.Layouts 1.1
 import Box2D 2.0
 
 import "../balloons" as Balloons
-import "../worldObjects" as WorldObjects
+import "../gameObjects" as WorldObjects
 
 import "../scripts/utility.js" as Utility
 
@@ -21,62 +21,26 @@ Item {
 
 	property Body pressedBody: null
 
-	property var spawnTimeRange: [100, 800]
+	// Zmienna odpowiadajaca za stan gry. (Działa, czy nie działa, o to jest pytanie...)
+	property bool gameRunning: false
 
 	Component.onCompleted: {}
-
-	Timer {
-		id: timerBalloonspawner
-		running: false
-		interval: Utility.getRandomInt(spawnTimeRange[0], spawnTimeRange[1]);
-		onTriggered: {
-			interval: Utility.getRandomInt(spawnTimeRange[0], spawnTimeRange[1]);
-			// Dodać balona
-		}
-	}
 
 	ColumnLayout {
 		anchors.fill: parent
 
-		// TODO: Dodać GameArea [X]
-
-		GameArea {
-			id: gameArea
-			anchors.top: parent.top
-			anchors.left: parent.left
-			anchors.right: parent.right
-			anchors.bottom: statusBar.top
-			bgtype: "image"
-			bgvalue: "http://lh6.ggpht.com/ZCOlB4IXq3Ocx8IhUrAtBUxhq26flOKbMsy8KU9mjPPh-Mf7s1yEIjTJ3DQioqOnbrU=h900"
-			scene: Item {
-				id: gameContent
-				// Umieścić tutaj box z grą
-			}
-		}
-
-//		Image {
-//			anchors.top: parent.top
-//			anchors.left: parent.left
-//			anchors.right: parent.right
-//			anchors.bottom: statusBar.top
-//			//color: 'grey'
-//			source: "http://lh6.ggpht.com/ZCOlB4IXq3Ocx8IhUrAtBUxhq26flOKbMsy8KU9mjPPh-Mf7s1yEIjTJ3DQioqOnbrU=h900"
-//			clip: true
-//		}
-
-
-
 		Row {
 			id: statusBar
-			anchors.bottom: parent.bottom
-			anchors.left: parent.left
-			anchors.right: parent.right
-			anchors.rightMargin: 10
-
+			anchors {
+				top: parent.top
+				left: parent.left
+				right: parent.right
+				topMargin: 3
+				bottomMargin: 3
+				leftMargin: 3
+				rightMargin: 10
+			}
 			spacing: 20
-
-			height: childrenRect.height
-
 			Item {
 				width: childrenRect.width
 				height: childrenRect.height
@@ -91,6 +55,22 @@ Item {
 				}
 			}
 		}
+
+		GameArea {
+			id: gameArea
+			anchors {
+				top: statusBar.bottom
+				left: parent.left
+				right: parent.right
+				bottom: parent.bottom
+			}
+			bgtype: "image"
+			bgvalue: "http://lh6.ggpht.com/ZCOlB4IXq3Ocx8IhUrAtBUxhq26flOKbMsy8KU9mjPPh-Mf7s1yEIjTJ3DQioqOnbrU=h900"
+			sceneComponent: Item {
+				id: gameContent
+				// Umieścić tutaj box z grą
+			}
+		}		
 	}
 
 	World {

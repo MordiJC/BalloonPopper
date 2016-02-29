@@ -1,5 +1,4 @@
-import QtQuick 2.0
-import QtQuick.Layouts 1.1
+import QtQuick 2.2
 
 /**
  * MainMenu.qml - Plik zawierający główne menu gry.
@@ -20,16 +19,20 @@ Item {
 				id: balloonLabel
 				text: "Balloon"
 				rotation: -10
-				font.pointSize: 22
-				font.family: "Forte"
+				font {
+					pointSize: 22
+					family: 'Forte'
+				}
 			}
 
 			Text {
 				id: popperLabel
 				text: "Popper"
 				rotation: 10
-				font.pointSize: 22
-				font.family: "Forte"
+				font {
+					pointSize: 22
+					family: 'Forte'
+				}
 			}
 		} // Row
 
@@ -51,8 +54,11 @@ Item {
 
 				anchors.centerIn: parent
 
-				font.pointSize: 14
-				font.family: 'Tahoma'
+				font {
+					pointSize: 14
+					family: 'Tahoma'
+				}
+
 				color: 'white'
 			}
 
@@ -80,8 +86,11 @@ Item {
 
 				anchors.centerIn: parent
 
-				font.pointSize: 14
-				font.family: 'Tahoma'
+				font {
+					pointSize: 14
+					family: 'Tahoma'
+				}
+
 				color: 'white'
 			}
 		} // Rectangle: highScoresButton

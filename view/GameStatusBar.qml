@@ -7,9 +7,6 @@ import QtQuick 2.0
 
 Item {
 	id: statusBar
-	anchors.left: parent.left
-	anchors.right: parent.right
-	height: 24
 
 	property alias model: itemsModel.model
 

@@ -2,5 +2,7 @@
     <qresource prefix="/">
         <file>gameObjects/GameWall.qml</file>
         <file>gameObjects/GameWorld.qml</file>
+        <file>gameObjects/Balloon.qml</file>
+        <file>gameObjects/PhysicsItem.qml</file>
     </qresource>
 </RCC>

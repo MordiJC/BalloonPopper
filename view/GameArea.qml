@@ -20,8 +20,14 @@ Item {
 	// Alias na źródło Loadera sceny gry.
 	property alias scene: sceneLoader.source
 
+	// Alias na Component sceny, który będzie instancjonowany w loaderze gry.
+	property alias sceneComponent: sceneLoader.sourceComponent
+
 	// Alias na źródło Loadera ui gry.
 	property alias ui: uiLoader.source
+
+	// Alias na Component ui, który będzie instancjonowany w loaderze gry.
+	property alias uiComponent: uiLoader.sourceComponent
 
 	/**
 	 * Ustawiamy `clip` na `true`, ponieważ nie chcemy,
