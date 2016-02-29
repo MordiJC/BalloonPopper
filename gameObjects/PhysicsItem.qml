@@ -7,6 +7,7 @@ Item {
 	id: item
 
 	property alias body: itemBody
+	property var physicsWorld: undefined
 
 	// Body properties
 	property alias world: itemBody.world

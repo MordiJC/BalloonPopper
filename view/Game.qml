@@ -51,55 +51,11 @@ Item {
 			}
 			bgtype: "image"
 			bgvalue: "http://lh6.ggpht.com/ZCOlB4IXq3Ocx8IhUrAtBUxhq26flOKbMsy8KU9mjPPh-Mf7s1yEIjTJ3DQioqOnbrU=h900"
-			sceneComponent: Item {
-				id: gameContent
-				// Umieścić tutaj box z grą
-			}
+			sceneComponent:
+				WorldObjects.GameWorld {
+					id: gameWorld
+				}
+
 		}		
-	}
-
-	World {
-		id: gameWorld
-		gravity: Qt.point(0, -4.5)
-	}
-
-
-	Balloons.Balloon {
-		id: balloon
-		objectName: "balloon"
-		gameWorld: gameWorld
-		points: 50
-		Component.onCompleted: setXY(100, 600)
-	}
-	WorldObjects.GameWall {
-		id: wallBottom
-		y: parent.height
-		x: 0
-		width: parent.width
-		gameWorld: gameWorld
-	}
-	WorldObjects.GameWall {
-		id: wallUp
-		y: -height + statusBar.height
-		x: 0
-		color: "transparent"
-		width: parent.width
-		gameWorld: gameWorld
-	}
-	WorldObjects.GameWall {
-		id: wallLeft
-		y: 0
-		x: -width
-		width: parent.width/2
-		height: parent.height * 2
-		gameWorld: gameWorld
-	}
-	WorldObjects.GameWall {
-		id: wallRight
-		y: 0
-		x: parent.width
-		width: parent.width/2
-		height: parent.height * 2
-		gameWorld: gameWorld
 	}
 }

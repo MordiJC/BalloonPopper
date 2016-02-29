@@ -2,6 +2,7 @@ import QtQuick 2.0
 import Box2D 2.0
 
 import "../balloons" as Balloons
+import "../gameObjects" as WorldObjects
 
 import "../scripts/utility.js" as Utility
 
@@ -43,7 +44,7 @@ Item {
 	 */
     World {
         id: gameWorld
-		gravity: Qt.point(0, 1)
+		gravity: Qt.point(0, -5)
     }
 
 	/**
@@ -61,11 +62,43 @@ Item {
 		}
 	}
 
-	Balloons.Balloon {
+	WorldObjects.Balloon {
 		id: balloon
         x: 100
         y: 100
         gameWorld: gameWorld
+	}
+
+	WorldObjects.GameWall {
+		id: wallBottom
+		y: parent.height
+		x: 0
+		width: parent.width
+		gameWorld: gameWorld
+	}
+	WorldObjects.GameWall {
+		id: wallUp
+		y: -height
+		x: 0
+		color: "transparent"
+		width: parent.width
+		gameWorld: gameWorld
+	}
+	WorldObjects.GameWall {
+		id: wallLeft
+		y: 0
+		x: -width
+		width: parent.width/2
+		height: parent.height * 2
+		gameWorld: gameWorld
+	}
+	WorldObjects.GameWall {
+		id: wallRight
+		y: 0
+		x: parent.width
+		width: parent.width/2
+		height: parent.height * 2
+		gameWorld: gameWorld
 	}
 }
 
