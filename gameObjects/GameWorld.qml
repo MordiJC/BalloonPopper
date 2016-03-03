@@ -19,7 +19,7 @@ Item {
 	 * Zmienna używana do ustalenia położenia górnej ściany wykrywającej,
 	 * czy balon wyleciał poza obszar widoczny dla gracza.
 	 */
-	property real balloonHeight: 32
+	property int balloonBoxHeight: 60
 
 	/**
 	 * Tablica na obiekty, które powinny być nadzorowane w czasie gry.
@@ -53,7 +53,7 @@ Item {
 	 */
     World {
         id: gameWorld
-		gravity: Qt.point(0, -5)
+		gravity: Qt.point(0, -3)
 		Component.onCompleted: balloonSpawnTimer.start()
     }
 
@@ -74,43 +74,40 @@ Item {
 		}
 	}
 
-	WorldObjects.Balloon {
-		id: balloon
-        x: 100
-        y: 100
-        gameWorld: gameWorld
-	}
-
+	/* Nie potrzebne?
 	WorldObjects.GameWall {
 		id: wallBottom
 		y: parent.height
 		x: 0
 		width: parent.width
-		gameWorld: gameWorld
-	}
+		world: gameWorld
+	}*/
 	WorldObjects.GameWall {
 		id: wallUp
-		y: -height
+		y: -height-balloonBoxHeight
 		x: 0
-		color: "transparent"
 		width: parent.width
-		gameWorld: gameWorld
+		height: 10
+		world: gameWorld
+		objectName: "wallUp"
 	}
 	WorldObjects.GameWall {
 		id: wallLeft
-		y: 0
+		y: -balloonBoxHeight
 		x: -width
-		width: parent.width/2
-		height: parent.height * 2
-		gameWorld: gameWorld
+		height: parent.height*2 + balloonBoxHeight
+		width: 10
+		world: gameWorld
+		objectName: "wallLeft"
 	}
 	WorldObjects.GameWall {
 		id: wallRight
-		y: 0
+		y: -balloonBoxHeight
 		x: parent.width
-		width: parent.width/2
-		height: parent.height * 2
-		gameWorld: gameWorld
+		height: parent.height*2 + balloonBoxHeight
+		width: 10
+		world: gameWorld
+		objectName: "wallRight"
 	}
 }
 

@@ -3,14 +3,11 @@ import Box2D 2.0
 
 Rectangle {
     id: wall
-    objectName: "wall"
-    color: "red"
-    width: 100
-    height: 50
+	objectName: "wall"
     property string wallImageSource
-    property bool wallImageSourceCenterIn: true
+	property bool wallImageSourceCenterIn: true
 
-    property World gameWorld: undefined
+	property alias world: wallBody.world
 
     Image {
         id: wallImage
@@ -18,12 +15,11 @@ Rectangle {
         source: parent.parent.wallImageSource !== undefined ? wallImageSource : ""
         anchors.fill: !wallImageSourceCenterIn ? parent : undefined
         visible: wallImageSource != undefined ? true : false
-    }
+	}
 
     Body {
         id: wallBody
-        target: wall
-        world: gameWorld
+		target: wall
         Box {
             id: wallBox
             objectName: wall.objectName
