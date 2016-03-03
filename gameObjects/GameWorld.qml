@@ -45,6 +45,7 @@ Item {
     World {
         id: gameWorld
 		gravity: Qt.point(0, -5)
+		Component.onCompleted: balloonSpawnTimer.start()
     }
 
 	/**
@@ -53,7 +54,7 @@ Item {
 	 */
 	Timer {
 		id: balloonSpawnTimer
-		running: false
+		running: true
 		interval: Utility.getRandomInt(minSpawnTime, maxSpawnTime);
 		onTriggered: {
 			interval = Utility.getRandomInt(minSpawnTime, maxSpawnTime);
