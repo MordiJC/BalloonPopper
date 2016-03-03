@@ -36,9 +36,12 @@ Item {
 	property int points: 0
 
 	// Minimalny interwał tworzenia nowych balonów.
-	property int minSpawnTime: 400
+	property int minSpawnTime: 200
 	// Maksymnalny iterwał tworzenia nowych balonów.
-	property int maxSpawnTime: 1500
+	property int maxSpawnTime: 1000
+
+	// Maksymalnny x dla tworzenia nowych balonów.
+	property int maxSpawnXPos: parent.width - 50
 
 	// Sygnał informujący o uzyskaniu punktów.
 	signal pointsReceieved(int points)
@@ -67,7 +70,9 @@ Item {
 		onTriggered: {
 			interval = Utility.getRandomInt(minSpawnTime, maxSpawnTime);
 
-			objects.push(balloonsComponent.createObject(rootGameWorld, {gameWorld: gameWorld}));
+			var color1 = Qt.rgba(Utility.getRandomFloat(0, 1), Utility.getRandomFloat(0, 0.5), Utility.getRandomFloat(0, 1), 1)
+			objects.push(balloonsComponent.createObject(rootGameWorld,
+				{ x: Utility.getRandomInt(0,maxSpawnXPos), y: parent.height-100, color: color1, gameWorld: gameWorld}))
 		}
 	}
 
