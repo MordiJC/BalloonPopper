@@ -10,10 +10,11 @@ import "../scripts/utility.js" as Utility
  * GameWorld.qml - Plik zawiera "Świat Gry", który zawiera
  * wszystkie elementy rozgrywki.
  */
-
 Item {
 	id: rootGameWorld
 	anchors.fill: parent
+
+	property var balloonsComponent: Qt.createComponent("../gameObjects/Balloon.qml");
 
 	/**
 	 * Zmienna używana do ustalenia położenia górnej ściany wykrywającej,
@@ -35,9 +36,15 @@ Item {
 	property int points: 0
 
 	// Minimalny interwał tworzenia nowych balonów.
-	property int minSpawnTime: 100
+	property int minSpawnTime: 400
 	// Maksymnalny iterwał tworzenia nowych balonów.
-	property int maxSpawnTime: 800
+	property int maxSpawnTime: 1500
+
+	// Sygnał informujący o uzyskaniu punktów.
+	signal pointsReceieved(int points)
+
+	// Sygnał informujacy o uzyskaniu bonusu.
+	signal bonusReceieved(string bonusName)
 
 	/**
 	 * Obiekt świata fizycznego, w którym będą przeprowadzane obliczenia.
@@ -55,11 +62,12 @@ Item {
 	Timer {
 		id: balloonSpawnTimer
 		running: true
+		repeat: true
 		interval: Utility.getRandomInt(minSpawnTime, maxSpawnTime);
 		onTriggered: {
 			interval = Utility.getRandomInt(minSpawnTime, maxSpawnTime);
 
-			objects.push(Balloons.createObject(rootGameWorld, {world: gameWorld}));
+			objects.push(balloonsComponent.createObject(rootGameWorld, {gameWorld: gameWorld}));
 		}
 	}
 
