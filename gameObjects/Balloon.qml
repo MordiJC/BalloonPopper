@@ -53,7 +53,11 @@ PhysicsItem {
 			density: -100
 			restitution: 0.1
 			friction: 0.1
-			//onBeginContact: console.log("Balloon contact with: ", other.objectName)
+			onBeginContact: {
+				if(other.objectName == "wallUp") {
+					balloonRoot.destroy();
+				}
+			}
 		}
 	}
 	Body {

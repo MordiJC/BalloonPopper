@@ -95,7 +95,7 @@ Item {
 		id: wallLeft
 		y: -balloonBoxHeight
 		x: -width
-		height: parent.height*2 + balloonBoxHeight
+		height: parent.height * 2 + balloonBoxHeight * 2
 		width: 10
 		world: gameWorld
 		objectName: "wallLeft"
@@ -104,7 +104,7 @@ Item {
 		id: wallRight
 		y: -balloonBoxHeight
 		x: parent.width
-		height: parent.height*2 + balloonBoxHeight
+		height: parent.height * 2 + balloonBoxHeight * 2
 		width: 10
 		world: gameWorld
 		objectName: "wallRight"
