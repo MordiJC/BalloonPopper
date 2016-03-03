@@ -3,7 +3,6 @@ import QtQuick.Layouts 1.1
 
 import Box2D 2.0
 
-import "../balloons" as Balloons
 import "../gameObjects" as WorldObjects
 
 import "../scripts/utility.js" as Utility

@@ -64,7 +64,7 @@ PhysicsItem {
 		to: 1.2
 		duration: 150
 		easing.type: Easing.InBounce
-		onStopped: ballonRoot.destroy()
+		onStopped: balloonRoot.destroy()
 	}
 
 	MouseArea {

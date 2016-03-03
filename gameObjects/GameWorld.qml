@@ -1,7 +1,6 @@
 import QtQuick 2.0
 import Box2D 2.0
 
-import "../balloons" as Balloons
 import "../gameObjects" as WorldObjects
 
 import "../scripts/utility.js" as Utility
@@ -66,7 +65,7 @@ Item {
 		onTriggered: {
 			interval = Utility.getRandomInt(minSpawnTime, maxSpawnTime);
 
-			objects.push(balloonsComponent.createObject(rootGameWorld, {gameWorld: gameWorld}));
+			objects.push(balloonsComponent.createObject(rootGameWorld, {gameWorld: gameWorld, x: Utility.getRandomInt(16, wallBottom.width-16), y: rootGameWorld.height-16}));
 		}
 	}
 
