@@ -74,14 +74,6 @@ Item {
 		}
 	}
 
-	/* Nie potrzebne?
-	WorldObjects.GameWall {
-		id: wallBottom
-		y: parent.height
-		x: 0
-		width: parent.width
-		world: gameWorld
-	}*/
 	WorldObjects.GameWall {
 		id: wallUp
 		y: -height-balloonBoxHeight
@@ -90,6 +82,15 @@ Item {
 		height: 10
 		world: gameWorld
 		objectName: "wallUp"
+	}
+	WorldObjects.GameWall {
+		id: wallBottom
+		y: parent.height * 2 + balloonBoxHeight * 2
+		x: 0
+		width: parent.width
+		height: 10
+		world: gameWorld
+		objectName: "wallBottom"
 	}
 	WorldObjects.GameWall {
 		id: wallLeft
