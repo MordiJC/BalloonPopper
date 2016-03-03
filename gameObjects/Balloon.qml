@@ -1,14 +1,18 @@
-import QtQuick 2.0
+import QtQuick 2.5
 import Box2D 2.0
 
 PhysicsItem {
 	id: balloonRoot
-
 	objectName: "balloon"
-	width: 50
-	height: 60
+	width: balloonWidth
+	height: balloonHeight
+	property color color: "red"
+	property real balloonOpacity: 1
+	property int balloonHeight: 60
+	property int balloonWidth: 50
 	property bool draggable: true
 	property alias gameWorld: balloonRoot.physicsWorld
+	property string imageSource: ""
 
 	property int points: 10
 
@@ -19,14 +23,22 @@ PhysicsItem {
 		balloonRoot.y = y
 	}
 
+	state: "RECT_BALLON"
 	Rectangle {
+		id: rectRepresentation
+		visible: true
 		anchors.fill: parent
-		width: 50
-		height: 60
-		color: "red"
-		opacity: 0.7
-		radius: 25
+		width: balloonWidth
+		height: balloonHeight
+		color: parent.color
+		opacity: balloonOpacity
+		radius: width/2
 		antialiasing: true
+	}
+	Image {
+		id: imageRepresentation
+		visible: false
+		source: parent.imageSource
 	}
 
 	Body {
@@ -37,11 +49,11 @@ PhysicsItem {
 		Circle {
 			id: box
 			objectName: balloonRoot.objectName
-			radius: 25
+			radius: rectRepresentation.radius
 			density: -100
 			restitution: 0.1
 			friction: 0.1
-			onBeginContact: console.log("Balloon contact with: ", other.objectName)
+			//onBeginContact: console.log("Balloon contact with: ", other.objectName)
 		}
 	}
 	Body {
@@ -89,6 +101,34 @@ PhysicsItem {
 				mouseDragJoint.bodyB = rootBody
 			}
 		}
-		onReleased: draggable ? mouseDragJoint.bodyB = null : 0
+		onReleased: {
+			draggable ? mouseDragJoint.bodyB = null : 0
+			animDestroy.start()
+		}
 	}
+
+	states: [
+		State {
+			name: "IMAGE_BALLON"
+			PropertyChanges {
+				target: rectRepresentation
+				visible: false
+			}
+			PropertyChanges {
+				target: imageRepresentation
+				visible: true
+			}
+		},
+		State {
+			name: "RECT_BALLON"
+			PropertyChanges {
+				target: rectRepresentation
+				visible: true
+			}
+			PropertyChanges {
+				target: imageRepresentation
+				visible: false
+			}
+		}
+	]
 }
