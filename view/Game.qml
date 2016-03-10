@@ -27,10 +27,11 @@ Item {
 	ColumnLayout {
 		anchors.fill: parent
 		Item {
-			id: statusBar
+			id: statusBarContainer
 			width: parent.width
 			height: parent.height/30
 			GameStatusBar {
+				id: gameStatusBar
 				model: ListModel {
 					id: modello
 				}
@@ -42,7 +43,7 @@ Item {
 		GameArea {
 			id: gameArea
 			anchors {
-				top: statusBar.bottom
+				top: statusBarContainer.bottom
 				left: parent.left
 				right: parent.right
 				bottom: parent.bottom
@@ -52,8 +53,9 @@ Item {
 			sceneComponent:
 				WorldObjects.GameWorld {
 					id: gameWorld
+					onPointsChanged: game.points = points
+					property GameStatusBar statusBar: gameStatusBar
 				}
-
 		}		
 	}
 }

@@ -12,11 +12,18 @@ PhysicsItem {
 	property int balloonWidth: 50
 	property bool draggable: true
 	property alias gameWorld: balloonRoot.physicsWorld
+	property GameWorld dataWorld
 	property string imageSource: ""
 
-	property int points: 10
+	property alias destroyAnim: animDestroy
+
+	property int pointsAlias
 
 	signal clicked
+	signal pressed
+	signal released
+	signal positionChanged
+	signal ballonDestroyed
 
 	function setXY(x,y) {
 		balloonRoot.x = x
@@ -55,6 +62,7 @@ PhysicsItem {
 			friction: 0.1
 			onBeginContact: {
 				if(other.objectName == "wallUp") {
+					ballonDestroyed()
 					balloonRoot.destroy();
 				}
 			}
@@ -89,7 +97,6 @@ PhysicsItem {
 		onClicked: {
 			console.log("Clicked objectName: ", balloonRoot.objectName)
 			balloonRoot.clicked()
-			animDestroy.start()
 		}
 		onPressed: {
 			if (draggable) {
@@ -97,17 +104,19 @@ PhysicsItem {
 				mouseDragJoint.target = Qt.point(mapToItem(null, mouseX, mouseY).x, mapToItem(null, mouseX, mouseY).y)
 				mouseDragJoint.bodyB = rootBody;
 			}
+			balloonRoot.pressed()
 		}
 		onPositionChanged: {
 			if (draggable) {
 				mouseDragJoint.maxForce = rootBody.getMass() * 15
 				mouseDragJoint.target = Qt.point(mapToItem(null, mouseX, mouseY).x, mapToItem(null, mouseX, mouseY).y)
 				mouseDragJoint.bodyB = rootBody
+				parent.positionChanged()
 			}
 		}
 		onReleased: {
 			draggable ? mouseDragJoint.bodyB = null : 0
-			animDestroy.start()
+			balloonRoot.released()
 		}
 	}
 

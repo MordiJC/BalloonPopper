@@ -4,5 +4,6 @@
         <file>gameObjects/GameWorld.qml</file>
         <file>gameObjects/Balloon.qml</file>
         <file>gameObjects/PhysicsItem.qml</file>
+        <file>gameObjects/BalloonNormal.qml</file>
     </qresource>
 </RCC>

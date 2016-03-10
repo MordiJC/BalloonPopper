@@ -10,6 +10,15 @@ Item {
 
 	property alias model: itemsModel.model
 
+	signal updateStatusBarValue(string name, int value)
+	onUpdateStatusBarValue: {
+		for (var i=0 ; i<model.count ; i++) {
+			if (model.get(i).name === name) {
+				model.get(i).value = value
+			}
+		}
+	}
+
 	// Status bar item component
 	Component {
 		id: statusBarComponent
