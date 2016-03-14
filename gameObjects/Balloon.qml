@@ -15,6 +15,8 @@ PhysicsItem {
 	property GameWorld dataWorld
 	property string imageSource: ""
 
+	property int points
+
 	property alias destroyAnim: animDestroy
 
 	property int pointsAlias
@@ -86,7 +88,7 @@ PhysicsItem {
 		property: "scale"
 		from: 1
 		to: 1.2
-		duration: 150
+		duration: 350
 		easing.type: Easing.InBounce
 		onStopped: balloonRoot.destroy()
 	}

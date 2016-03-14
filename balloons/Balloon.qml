@@ -1,4 +1,4 @@
-import QtQuick 2.0
+import QtQuick 2.5
 import Box2D 2.0
 
 Rectangle {
@@ -56,7 +56,7 @@ Rectangle {
 		property: "scale"
 		from: 1
 		to: 1.2
-		duration: 150
+		duration: 1500
 		easing.type: Easing.InBounce
 		onStopped: root.destroy()
 	}
