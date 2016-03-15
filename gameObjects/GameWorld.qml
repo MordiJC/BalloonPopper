@@ -14,7 +14,8 @@ Item {
 	anchors.fill: parent
 
 	property var balloonsComponent: Qt.createComponent("../gameObjects/Balloon.qml");
-	property var balloonNormalObj: Qt.createComponent("../gameObjects/BalloonNormal.qml")
+	property Component balloonNormalObj: Qt.createComponent("../gameObjects/BalloonNormal.qml")
+	property Component balloonGravityObj: Qt.createComponent("../gameObjects/BalloonGravity.qml")
 
 	/**
 	 * Zmienna używana do ustalenia położenia górnej ściany wykrywającej,
@@ -39,13 +40,13 @@ Item {
 	// Minimalny interwał tworzenia nowych balonów.
 	property int minSpawnTime: 200
 	// Maksymnalny iterwał tworzenia nowych balonów.
-	property int maxSpawnTime: 1000
+	property int maxSpawnTime: 300
 
 	// Maksymalnny x dla tworzenia nowych balonów.
 	property int maxSpawnXPos: parent.width - 50
 
 	// Maksymalna ilość balonów
-	property int maxBalloons: 50
+	property int maxBalloons: 200
 
 	// Ilość utworzonych balonów na planszy
 	property int ballonSpawned: 0
@@ -65,8 +66,19 @@ Item {
 	 */
 	World {
 		id: gameWorld
-		gravity: Qt.point(0, -3)
+		property point normalGravity: Qt.point(0, -1)
+		gravity: normalGravity
+		onGravityChanged: timerGravityBack.start()
 		Component.onCompleted: balloonSpawnTimer.start()
+	}
+	Timer {
+		id: timerGravityBack
+		interval: 1000
+		repeat: false
+		onTriggered: {
+			gameWorld.gravity = gameWorld.normalGravity
+			stop()
+		}
 	}
 
 	/**
@@ -82,13 +94,24 @@ Item {
 			if (ballonSpawned <= maxBalloons) {
 				interval = Utility.getRandomInt(minSpawnTime, maxSpawnTime);
 				var color1 = Qt.rgba(Utility.getRandomFloat(0, 1), Utility.getRandomFloat(0, 0.5), Utility.getRandomFloat(0, 1), 1);
-				objects.push(balloonNormalObj.createObject(rootGameWorld,
-				   { x: Utility.getRandomInt(0,maxSpawnXPos),
-					 y: parent.height-100,
-					 color: color1,
-					 pointsAlias: points,
-					 dataWorld: rootGameWorld,
-					 gameWorld: gameWorld}));
+
+				if (ballonSpawned == 20) {
+					objects.push(balloonGravityObj.createObject(rootGameWorld,
+					   { x: Utility.getRandomInt(0,maxSpawnXPos),
+						 y: parent.height,
+						 color: "black",
+						 pointsAlias: points,
+						 dataWorld: rootGameWorld,
+						 gameWorld: gameWorld}));
+				} else {
+					objects.push(balloonNormalObj.createObject(rootGameWorld,
+					   { x: Utility.getRandomInt(0,maxSpawnXPos),
+						 y: parent.height,
+						 color: color1,
+						 pointsAlias: points,
+						 dataWorld: rootGameWorld,
+						 gameWorld: gameWorld}));
+				}
 				ballonSpawned++
 			} else {
 				console.log("Koniec etapu")

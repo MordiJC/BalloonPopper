@@ -6,5 +6,6 @@
         <file>gameObjects/PhysicsItem.qml</file>
         <file>gameObjects/BalloonNormal.qml</file>
         <file>gameObjects/TextBalloonPoints.qml</file>
+        <file>gameObjects/BalloonGravity.qml</file>
     </qresource>
 </RCC>

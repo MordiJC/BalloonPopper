@@ -88,8 +88,7 @@ PhysicsItem {
 		property: "scale"
 		from: 1
 		to: 1.2
-		duration: 350
-		easing.type: Easing.InBounce
+		duration: 550
 		onStopped: balloonRoot.destroy()
 	}
 
@@ -98,6 +97,7 @@ PhysicsItem {
 		propagateComposedEvents: true
 		onClicked: {
 			console.log("Clicked objectName: ", balloonRoot.objectName)
+			rootBody.applyForce(Qt.point(0, -300), rootBody.getWorldCenter())
 			balloonRoot.clicked()
 		}
 		onPressed: {

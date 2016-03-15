@@ -9,7 +9,7 @@ Text {
 	font.pointSize: size
 	text: pointsText
 	color: "red"
-	opacity: 0.7
+	opacity: 0
 	visible: false
 
 	function showPoints() {
@@ -23,21 +23,21 @@ Text {
 			target: textRoot
 			from: 0
 			to: 0.7
-			duration: 250
+			duration: 350
 		}
 		NumberAnimation {
 			property: "x"
 			target: textRoot
 			from: 0
 			to: Utility.getRandomInt(-50, 50)
-			duration: 300
+			duration: 1000
 		}
 		NumberAnimation {
 			property: "y"
 			target: textRoot
 			from: 0
 			to: Utility.getRandomInt(-50, 50)
-			duration: 300
+			duration: 1000
 		}
 	}
 }
