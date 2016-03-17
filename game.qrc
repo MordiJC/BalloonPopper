@@ -7,5 +7,6 @@
         <file>gameObjects/BalloonNormal.qml</file>
         <file>gameObjects/TextBalloonPoints.qml</file>
         <file>gameObjects/BalloonGravity.qml</file>
+        <file>gameObjects/BalloonFreezeTime.qml</file>
     </qresource>
 </RCC>

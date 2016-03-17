@@ -16,6 +16,7 @@ Item {
 	property var balloonsComponent: Qt.createComponent("../gameObjects/Balloon.qml");
 	property Component balloonNormalObj: Qt.createComponent("../gameObjects/BalloonNormal.qml")
 	property Component balloonGravityObj: Qt.createComponent("../gameObjects/BalloonGravity.qml")
+	property Component balloonFreezeTimeObj: Qt.createComponent("../gameObjects/BalloonFreezeTime.qml")
 
 	/**
 	 * Zmienna używana do ustalenia położenia górnej ściany wykrywającej,
@@ -69,6 +70,7 @@ Item {
 		property point normalGravity: Qt.point(0, -1)
 		gravity: normalGravity
 		onGravityChanged: timerGravityBack.start()
+		onRunningChanged: timerRunningBack.start()
 		Component.onCompleted: balloonSpawnTimer.start()
 	}
 	Timer {
@@ -77,6 +79,15 @@ Item {
 		repeat: false
 		onTriggered: {
 			gameWorld.gravity = gameWorld.normalGravity
+			stop()
+		}
+	}
+	Timer {
+		id: timerRunningBack
+		interval: 3000
+		repeat: false
+		onTriggered: {
+			gameWorld.running = true
 			stop()
 		}
 	}
@@ -97,6 +108,14 @@ Item {
 
 				if (ballonSpawned == 20) {
 					objects.push(balloonGravityObj.createObject(rootGameWorld,
+					   { x: Utility.getRandomInt(0,maxSpawnXPos),
+						 y: parent.height,
+						 color: "black",
+						 pointsAlias: points,
+						 dataWorld: rootGameWorld,
+						 gameWorld: gameWorld}));
+				} else if (ballonSpawned == 30) {
+					objects.push(balloonFreezeTimeObj.createObject(rootGameWorld,
 					   { x: Utility.getRandomInt(0,maxSpawnXPos),
 						 y: parent.height,
 						 color: "black",
